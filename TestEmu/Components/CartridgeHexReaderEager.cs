@@ -5,16 +5,17 @@ namespace TestEmu.Components
     internal abstract class CartridgeHexReaderEager
     {
         public string FilePath { get; }
-        protected byte[] RawFile { get; private set; } = Array.Empty<byte>();
+        protected byte[] RawFile { get; }
 
         protected CartridgeHexReaderEager(string filePath)
         {
             FilePath = filePath;
+            RawFile = ReadAllBytesIntoMemoryAsync();
         }
 
-        protected async Task ReadAllBytesIntoMemoryAsync()
+        private byte[] ReadAllBytesIntoMemoryAsync()
         {
-            RawFile = await File.ReadAllBytesAsync(FilePath);
+            return File.ReadAllBytes(FilePath);
         }
 
         public byte[] GetBytesBetweenHexadecimal(int start, int end)

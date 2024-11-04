@@ -5,14 +5,7 @@ namespace TestEmu.Components
 {
     internal class GameBoyCartridgeHexReaderEager : CartridgeHexReaderEager
     {
-        private GameBoyCartridgeHexReaderEager(string filePath) : base(filePath) { }
-
-        public static async Task<GameBoyCartridgeHexReaderEager> CreateAsync(string filePath)
-        {
-            var reader = new GameBoyCartridgeHexReaderEager(filePath);
-            await reader.ReadAllBytesIntoMemoryAsync();
-            return reader;
-        }
+        public GameBoyCartridgeHexReaderEager(string filePath) : base(filePath) { }
 
         private bool IsOldLicensee => RawFile[GameBoyCartridgeHeader.OldLicenseeCodeHexLocation] 
             != GameBoyCartridgeHeader.NewLicenseeCodeIndicationValue;

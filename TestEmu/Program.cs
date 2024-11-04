@@ -20,12 +20,13 @@ namespace TestEmu
             //string filePath = "../../../Roms/Street Fighter II (USA) (SGB Enhanced).gb";
             //string filePath = "../../../Roms/Goukaku Boy GOLD - Shikakui Atama o Maruku Suru - Kanji no Tatsujin (Japan) (Special Edition).gb";
 
-            var reader = GameBoyCartridgeHexReaderEager.CreateAsync(filePath).Result;
-            reader.PrintHeaderInformation();
+            //var reader = new GameBoyCartridgeHexReaderEager(filePath);
+            //reader.PrintHeaderInformation();
             //reader.GetBytesBetweenHexadecimal("0x14B", "0x14B");
 
             Console.ReadKey();
 
+            var emulator = new GameBoyEmulator(filePath);
 
             /*using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
